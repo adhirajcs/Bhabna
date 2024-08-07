@@ -4,7 +4,7 @@ import Nav from '@components/Nav'
 import Provider from '@components/Provider'
 
 export const metadata = {
-    title: 'Bhabna',
+    title: 'ভাবনা (Bhabna)',
     description: 'Discover and share Ideas',
     }
 
