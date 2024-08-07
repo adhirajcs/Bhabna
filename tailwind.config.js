@@ -10,6 +10,7 @@ module.exports = {
       fontFamily: {
         satoshi: ['Satoshi', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
+        lipishree: ["Lipishree", 'sans-serif'],
       },
       colors: {
         'primary-orange': '#FF5722',
