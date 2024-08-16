@@ -11,11 +11,20 @@ export const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: process.env.MONGODB_DB,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // await mongoose.connect(process.env.MONGODB_URI, {
+    //   dbName: "ideas",
+    //   // useNewUrlParser: true,
+    //   // useUnifiedTopology: true,
+    // });
+
+    mongoose.connect(
+      `mongodb+srv://adhiraj:${process.env.MONGODB_PASSWORD}@cluster0.lmon4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
+      {
+        dbName: "bhabna",
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
 
     isConnected = true;
     console.log("MongoDB connection success");
@@ -23,3 +32,8 @@ export const connectDB = async () => {
     console.log("MongoDB connection error: ", error);
   }
 };
+
+(async () => {
+  await connectDB();
+  console.log("Is MongoDB connected?", isConnected); // This will correctly show the connection status
+})();
