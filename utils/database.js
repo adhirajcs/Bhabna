@@ -21,8 +21,6 @@ export const connectDB = async () => {
       `mongodb+srv://adhiraj:${process.env.MONGODB_PASSWORD}@cluster0.lmon4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
       {
         dbName: "bhabna",
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
       }
     );
 
