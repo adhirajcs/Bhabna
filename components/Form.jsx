@@ -32,7 +32,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <br />
           <label>
             <span className="font-satoshi font-semibold text-base text-gray-700">
-              Hashtags {` `}
+              Hashtag {` `}
               <span>(#idea, #lyrics, #poem)</span>
             </span>
 
@@ -53,7 +53,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             <button 
             type="submit" 
             disabled={submitting}
-            className="px-5 py-1.5 text-sm bg-primary-orange text-white rounded-full"
+            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white "
             >
               {submitting ? `${type}...` : `${type}`}
             </button>

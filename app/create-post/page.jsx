@@ -2,18 +2,41 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import Form from "@components/Form";
 
 const CreatePost = () => {
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     post_body: "",
     tag: "",
   });
 
-  const createPost = async (e) => {};
+  const createPost = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+        try {
+      const response = await axios.post("/api/post/new", {
+        post_body: post.post_body,
+        userId: session?.user.id,
+        tag: post.tag,
+      });
+
+      if (response.status === 201) {
+        router.push("/");
+      } else {
+        console.error("Failed to create post:", response.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
