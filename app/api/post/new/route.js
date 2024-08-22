@@ -1,11 +1,11 @@
-import { connectDB } from "@utils/database";
+import { connectToDB } from "@utils/database";
 import Post from "@models/post";
 
 export const POST = async (req) => {
   const { userId, post_body, tag } = await req.json();
 
   try {
-    await connectDB();
+    await connectToDB();
     const newPost = new Post({
       creator: userId,
       post_body,

@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // reactStrictMode: false,
   experimental: {
-    // appDir: true,
+    appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
