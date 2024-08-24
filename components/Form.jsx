@@ -32,7 +32,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <br />
           <label>
             <span className="font-satoshi font-semibold text-base text-gray-700">
-              Hashtag {` `}
+              Hashtags {` `}
               <span>(#idea, #lyrics, #poem)</span>
             </span>
 
