@@ -21,7 +21,7 @@ const CreatePost = () => {
     e.preventDefault();
     setSubmitting(true);
 
-        try {
+    try {
       const response = await axios.post("/api/post/new", {
         post_body: post.post_body,
         userId: session?.user.id,
@@ -35,6 +35,8 @@ const CreatePost = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setSubmitting(false);
     }
   };
 
