@@ -49,7 +49,7 @@ export const DELETE = async (request, { params }) => {
   try {
     await connectToDB()
 
-    await Post.findByIdAndRemove(params.id);
+    await Post.findByIdAndDelete(params.id);
 
     return new Response("Post Deleted", {status: 200})
 

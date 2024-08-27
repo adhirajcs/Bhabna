@@ -26,11 +26,22 @@ const MyProfile = () => {
 
   const handleEdit = (post) => {
     router.push(`/update-post?id=${post._id}`);
-
   };
 
   const handleDelete = async (post) => {
-    
+    const hasConfirmed = confirm("Are you sure you want to delete this post?");
+
+    if (hasConfirmed) {
+      try {
+        await axios.delete(`/api/post/${post._id.toString()}`);
+       
+        const filteredPosts = allPosts.filter((p) => p._id !== post._id)
+
+        setAllPosts(filteredPosts);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   return (
