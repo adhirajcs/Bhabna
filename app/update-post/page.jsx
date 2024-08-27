@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -71,4 +71,10 @@ const EditPost = () => {
   );
 };
 
-export default EditPost;
+export default function WrappedEditPost() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EditPost />
+    </Suspense>
+  );
+}
