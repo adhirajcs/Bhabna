@@ -68,10 +68,17 @@ const Feed = () => {
     setSearchedResults(filteredPosts);
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <section className="feed">
-        <form className="relative w-full flex-center">
+        <form
+          className="relative w-full flex-center"
+          onSubmit={handleFormSubmit}
+        >
           <input
             type="text"
             placeholder="Search for a post/tag/username..."
@@ -82,7 +89,10 @@ const Feed = () => {
           />
         </form>
 
-        <PostCardList data={searchText ? searchedResults : allPosts} handleTagClick={handleTagClick} />
+        <PostCardList
+          data={searchText ? searchedResults : allPosts}
+          handleTagClick={handleTagClick}
+        />
       </section>
     </>
   );
