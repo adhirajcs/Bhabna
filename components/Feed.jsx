@@ -22,24 +22,51 @@ const PostCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
-  
-  const [searchText, setSearchText] = useState("");
 
-  
+  // Search related states
+  const [searchText, setSearchText] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [searchedResults, setSearchedResults] = useState([]);
+
   const fetchPosts = async () => {
     const response = await axios.get("/api/post");
     const data = response.data;
-    
+
     setAllPosts(data);
   };
-  
+
   useEffect(() => {
     fetchPosts();
   }, []);
-  
-  const handleSearchChange = () => {};
 
-  const handleTagClick = () => {};
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchResult = allPosts.filter(
+          (post) =>
+            post.post_body.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.tag.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.creator.username
+              .toLowerCase()
+              .includes(searchText.toLowerCase())
+        );
+        setSearchedResults(searchResult);
+      }, 500)
+    );
+  };
+
+  const handleTagClick = (tagName) => {
+    setSearchText(tagName);
+
+    const filteredPosts = allPosts.filter(
+      (post) => post.tag.toLowerCase() === tagName.toLowerCase()
+    );
+
+    setSearchedResults(filteredPosts);
+  };
 
   return (
     <>
@@ -54,7 +81,8 @@ const Feed = () => {
             className="search_input peer"
           />
         </form>
-        <PostCardList data={allPosts} handleTagClick={handleTagClick} />
+
+        <PostCardList data={searchText ? searchedResults : allPosts} handleTagClick={handleTagClick} />
       </section>
     </>
   );
