@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const {data: session} = useSession();
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -96,16 +96,16 @@ const Nav = () => {
                 <Link
                   href="/profile"
                   className="dropdown_link"
-                  onClick={() => setToggleDropDown(false)}
+                  onClick={() => setToggleDropdown(false)}
                 >
                   My Profile
                 </Link>
 
-                {/* Menu Item 2 - Sign Out Button */}
+                {/* Menu Item 2 - Create Post */}
                 <Link
                   href="/create-post"
                   className="dropdown_link"
-                  onClick={() => setToggleDropDown(false)}
+                  onClick={() => setToggleDropdown(false)}
                 >
                   Create Post
                 </Link>
@@ -114,7 +114,7 @@ const Nav = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    setToggleDropDown(false);
+                    setToggleDropdown(false);
                     signOut();
                   }}
                   className="mt-5 w-full black_btn"
