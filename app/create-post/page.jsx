@@ -30,6 +30,7 @@ const CreatePost = () => {
 
       if (response.status === 201) {
         router.push("/");
+        router.refresh();
       } else {
         console.error("Failed to create post:", response.data);
       }
