@@ -11,6 +11,8 @@ const Nav = () => {
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  const [showTooltip, setShowTooltip] = useState(true);
+
   useEffect(() => {
     const setUpProviders = async () => {
       const providers = await getProviders();
@@ -19,6 +21,11 @@ const Nav = () => {
 
     setUpProviders();
   }, []);
+
+  const handleProfileClick = () => {
+    setShowTooltip(false); // Hide the tooltip permanently on click
+    setToggleDropdown((prev) => !prev); // Toggle the dropdown
+  };
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
@@ -47,16 +54,24 @@ const Nav = () => {
               Sign Out
             </button>
 
-            {/* Profile button */}
-            <Link href="/profile">
-              <Image
-                src={session?.user.image}
-                width={28}
-                height={28}
-                className="rounded-full"
-                alt="Profile"
-              />
-            </Link>
+            {/* Profile button with bottom tooltip */}
+            <div className="group relative">
+              <Link href="/profile">
+                <Image
+                  src={session?.user.image}
+                  width={28}
+                  height={28}
+                  className="rounded-full"
+                  alt="Profile"
+                />
+              </Link>
+              <div className="bg-gray-200 p-2 rounded-md hidden group-hover:flex absolute -bottom-2 translate-y-full left-1/2 -translate-x-1/2">
+                <span className="text-gray-500  whitespace-nowrap">
+                  Profile
+                </span>
+                <div className="bg-inherit rotate-45 p-1 absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>
+              </div>
+            </div>
           </div>
         ) : (
           <>
@@ -79,15 +94,25 @@ const Nav = () => {
       <div className="sm:hidden flex relative">
         {/* Profile Button toggle */}
         {session?.user ? (
-          <div className="flex">
-            <Image
-              src={session?.user.image}
-              width={28}
-              height={28}
-              className="rounded-full"
-              alt="profile"
-              onClick={() => setToggleDropdown((prev) => !prev)}
-            />
+          <div className="group relative flex items-center">
+            <div className="group relative">
+              <Image
+                src={session?.user.image}
+                width={28}
+                height={28}
+                className="rounded-full"
+                alt="profile"
+                onClick={handleProfileClick} // Hide tooltip and toggle dropdown on click
+              />
+              {showTooltip && (
+                <div className="bg-gray-200 p-2 rounded-md absolute top-1/2 -translate-y-1/2 -left-2 -translate-x-full">
+                  <span className="text-gray-500 whitespace-nowrap">
+                    Click Me!
+                  </span>
+                  <div className="bg-inherit rotate-45 p-1 absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2"></div>
+                </div>
+              )}
+            </div>
 
             {/* Dropdown menu */}
             {toggleDropdown && (
