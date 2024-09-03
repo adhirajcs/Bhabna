@@ -1,24 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PostCard from "./PostCard";
 import axios from "axios";
+import PostCardList from "./PostCardList";
 
-const PostCardList = ({ data, handleTagClick }) => {
-  return (
-    <>
-      <div className="mt-16 post_layout">
-        {data.map((post) => (
-          <PostCard
-            key={post._id}
-            post={post}
-            handleTagClick={handleTagClick}
-          />
-        ))}
-      </div>
-    </>
-  );
-};
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
