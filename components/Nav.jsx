@@ -107,7 +107,7 @@ const Nav = () => {
               {showTooltip && (
                 <div className="bg-gray-200 p-2 rounded-md absolute top-1/2 -translate-y-1/2 -left-2 -translate-x-full">
                   <span className="text-gray-500 whitespace-nowrap">
-                    Click Me!
+                    Click Here!
                   </span>
                   <div className="bg-inherit rotate-45 p-1 absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/2"></div>
                 </div>
